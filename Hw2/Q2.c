@@ -2,23 +2,24 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int main()
+int main(int argc, const char *argv[])
 {
     int rc = fork();
+
     if (rc < 0)
     {
-        perror("Fork failed");
+        fprintf(stderr, "Fork failed\n");
         exit(1);
     }
     else if (rc == 0)
     {
         printf("hello\n");
-        fflush(stdout);
-        _exit(0);
     }
     else
     {
+        usleep(100);
         printf("goodbye\n");
-        exit(0);
     }
+
+    return 0;
 }
